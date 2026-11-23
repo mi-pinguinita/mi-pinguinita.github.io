@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pingüinita</title>
+    <style>
+        body {
+            margin: 0;
+            overflow-x: auto;
+            background-color: rgb(192, 15, 15);
+        }
+
+        .mosaico {
+            display: grid;
+            grid-template-columns: repeat(18, minmax(0, 1fr));
+            min-width: 1440px;
+            width: 100%;
+            line-height: 0;
+        }
+
+        .mosaico img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <main class="mosaico" aria-label="Mosaico de fragmentos"></main>
+    <script>
+        const filas = 12;
+        const columnas = 18;
+        const mosaico = document.querySelector(".mosaico");
+        const path = "https://esoxo-dev.sirv.com/mi-pinguinita/";
+        const prefix = "fragmento_";
+
+        for (let fila = 1; fila <= filas; fila++) {
+            for (let columna = 1; columna <= columnas; columna++) {
+                const img = document.createElement("img");
+                img.src = `${path}${prefix}${String(fila).padStart(2, "0")}_${String(columna).padStart(2, "0")}.jpg`;
+                img.alt = `Fragmento, fila ${fila}, columna ${columna}`;
+                img.loading = "lazy";
+                mosaico.appendChild(img);
+            }
+        }
+    </script>
+</body>
+</html>
